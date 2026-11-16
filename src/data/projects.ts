@@ -6,10 +6,9 @@
  * - `link` is optional: leave it out for confidential / school work.
  * - Every text field is bilingual: { fr, en }.
  */
-import agents from '../assets/illustrations/agents.svg'
 import ocr from '../assets/illustrations/ocr.svg'
 import personal from '../assets/illustrations/personal-agent.svg'
-import dataPlatform from '../assets/illustrations/data-platform.svg'
+import syndic from '../assets/illustrations/syndic.svg'
 import crow from '../assets/illustrations/crow.svg'
 import service from '../assets/illustrations/service-platform.svg'
 import cpu480 from '../assets/img/cpu-480.webp'
@@ -37,31 +36,85 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: 'agents',
-    title: { fr: 'Orchestrateur d’agents autonomes', en: 'Autonomous agent orchestrator' },
+    id: 'medical-records',
+    title: { fr: 'Classement de dossiers médicaux manuscrits', en: 'Handwritten medical records, auto-filed' },
     category: 'ai',
     year: '2026',
-    status: { fr: 'Projet interne', en: 'Internal project' },
+    status: { fr: 'En production · mission indépendante', en: 'In production · freelance' },
     problem: {
-      fr: 'Laisser un LLM agir seul sans qu’il se perde : mémoire, gestion du contexte, sandbox où il exécute son propre code, outils branchés.',
-      en: 'Letting an LLM act on its own without losing the plot: memory, context management, a sandbox where it runs its own code, plugged-in tools.',
+      fr: 'Un médecin et des milliers de fiches de consultation manuscrites : les numériser, reconnaître le patient et les dates, et les ranger automatiquement dans le bon dossier.',
+      en: 'A doctor and thousands of handwritten consultation sheets: digitise them, recognise the patient and the dates, and file each one in the right record automatically.',
     },
     highlights: {
       fr: [
-        'Mémoire courte et longue durée, pour qu’un agent reprenne une tâche là où il l’a laissée.',
-        'Gestion du contexte : ne donner au modèle que ce qui compte, au bon moment.',
-        'Sandbox isolée dans laquelle l’agent écrit et exécute du code en sécurité.',
-        'Catalogue d’outils (APIs, fichiers, recherche) que l’agent choisit lui-même.',
+        'Pipeline d’ingestion : PDF ou photos, une fiche par page, stockage adressé par empreinte SHA-256, file d’attente.',
+        'Extraction par modèle de vision (Claude) sur deux images par fiche, sortie JSON validée par schéma Zod.',
+        'Appariement patient robuste : date de naissance + distance de Levenshtein, jamais de fusion d’homonymes.',
+        'Vérification humaine sous un seuil de confiance de 0,9 ; sauvegardes chiffrées nocturnes avec restauration testée.',
       ],
       en: [
-        'Short and long-term memory, so an agent resumes a task where it left it.',
-        'Context management: give the model only what matters, at the right time.',
-        'Isolated sandbox where the agent writes and runs code safely.',
-        'A tool catalogue (APIs, files, search) the agent picks from by itself.',
+        'Ingestion pipeline: PDFs or photos, one sheet per page, SHA-256 content-addressed storage, job queue.',
+        'Vision-model extraction (Claude) on two images per sheet, JSON output validated with a Zod schema.',
+        'Robust patient matching: date of birth + Levenshtein distance, namesakes are never merged.',
+        'Human review below a 0.9 confidence threshold; nightly encrypted backups with tested restores.',
       ],
     },
-    stack: ['LLM APIs', 'Agents', 'Tool calling', 'Sandbox'], // TODO(omar): add exact languages/frameworks
-    image: { src: agents, alt: { fr: 'Schéma : planificateur relié à la mémoire, aux outils, au contexte et à la sandbox', en: 'Diagram: planner linked to memory, tools, context and sandbox' } },
+    stack: ['TypeScript', 'React 19', 'Hono', 'SQLite', 'Claude API', 'Zod', 'Fly.io', 'restic'],
+    image: { src: ocr, alt: { fr: 'Fiche avec blocs de texte détectés et scores de confiance', en: 'Sheet with detected text blocks and confidence scores' } },
+  },
+  {
+    id: 'consultant-assistant',
+    title: { fr: 'Assistant IA pour un consultant senior', en: 'AI assistant for a senior consultant' },
+    category: 'ai',
+    year: '2026',
+    status: { fr: 'En production · projet personnel', en: 'In production · personal project' },
+    problem: {
+      fr: 'Un agent sur Telegram qui travaille vraiment pour un consultant : il lit ses mails, prépare ses brouillons, produit ses documents et tient sa feuille de temps — sans jamais pouvoir envoyer un e-mail tout seul.',
+      en: 'A Telegram agent that actually works for a consultant: it reads his mail, drafts replies, produces his documents and keeps his timesheet — without ever being able to send an email on its own.',
+    },
+    highlights: {
+      fr: [
+        'Agent multimodal (texte, vocal, documents, images) avec boucle d’outils plafonnée à 25 itérations et une trentaine d’outils.',
+        'Gmail en lecture + brouillons uniquement : aucun outil d’envoi n’existe, chaque brouillon est vérifié par relecture.',
+        'Compaction du contexte au-delà de 80 000 tokens par un modèle plus léger, sans casser les paires outil / résultat.',
+        'Exfiltration de secrets par injection bloquée ; 754 tests automatisés ; coûts suivis requête par requête.',
+      ],
+      en: [
+        'Multimodal agent (text, voice, documents, images) with a tool loop capped at 25 iterations and about thirty tools.',
+        'Gmail read + drafts only: no send tool exists, every draft is verified by reading it back.',
+        'Context compaction past 80,000 tokens by a lighter model, without breaking tool call / result pairs.',
+        'Prompt-injection secret exfiltration blocked; 754 automated tests; costs tracked per request.',
+      ],
+    },
+    stack: ['Python 3.12', 'Claude API', 'Whisper', 'Gmail API', 'SQLite', 'Hetzner', 'systemd', 'pytest'],
+    image: { src: personal, alt: { fr: 'Un agent relié aux e-mails, à l’agenda et aux documents', en: 'An agent linked to mail, calendar and documents' } },
+  },
+  {
+    id: 'syndic',
+    title: { fr: 'Plateforme de syndic de copropriété', en: 'Condominium management platform' },
+    category: 'web',
+    year: '2026',
+    status: { fr: 'Pour une résidence', en: 'For a residence' },
+    problem: {
+      fr: 'Gérer une copropriété de bout en bout — charges, paiements, relances, assemblées, documents — avec un portail pour le gestionnaire et un autre pour chaque copropriétaire.',
+      en: 'Run a condominium end to end — charges, payments, reminders, general meetings, documents — with one portal for the manager and another for every owner.',
+    },
+    highlights: {
+      fr: [
+        'Appels de charges trimestriels par tantièmes, idempotents, en centimes entiers pour éviter toute dérive d’arrondi.',
+        'Paiements en ligne et manuels, recalcul transactionnel des soldes ; PDF générés côté serveur (relances, convocations).',
+        'Champs personnalisés configurables par le client (modèle EAV) sur cinq entités métier.',
+        'Durcissement sécurité : JWT httpOnly, RBAC revérifié en base, garde multi-tenant, CSP, anti-brute-force.',
+      ],
+      en: [
+        'Quarterly service-charge calls by ownership shares, idempotent, in integer cents so rounding never drifts.',
+        'Online and manual payments, transactional balance recalculation; server-side PDFs (reminders, meeting notices).',
+        'Custom fields the client configures (EAV model) across five business entities.',
+        'Security hardening: httpOnly JWT, RBAC re-checked in the database, multi-tenant guard, CSP, anti-brute-force.',
+      ],
+    },
+    stack: ['Next.js 16', 'React 19', 'TypeScript', 'Prisma', 'PostgreSQL', 'Zod', 'Docker', 'Railway'],
+    image: { src: syndic, alt: { fr: 'Une résidence reliée au portail gestionnaire et au portail copropriétaire', en: 'A residence linked to the manager portal and the owner portal' } },
   },
   {
     id: 'cpu',
@@ -111,62 +164,11 @@ export const projects: Project[] = [
     link: { href: 'https://atome-marathon-dev.netlify.app/', label: { fr: 'Voir le site', en: 'Visit the site' } },
   },
   {
-    id: 'ocr',
-    title: { fr: 'OCR documentaire', en: 'Document OCR' },
-    category: 'ai',
-    year: '2026',
-    status: { fr: 'Projet interne', en: 'Internal project' },
-    problem: {
-      fr: 'Transformer des documents réels — scannés, tordus, multi-colonnes — en texte et en données fiables.',
-      en: 'Turning real-world documents — scanned, skewed, multi-column — into reliable text and data.',
-    },
-    highlights: {
-      fr: ['Détection des blocs de texte et de leur ordre de lecture.', 'Score de confiance par bloc pour savoir quand un humain doit relire.', 'Sortie structurée, prête à être exploitée par une IA.'],
-      en: ['Detects text blocks and their reading order.', 'Per-block confidence score, to know when a human should check.', 'Structured output, ready to be used by an AI.'],
-    },
-    stack: ['OCR', 'Computer vision', 'LLM'], // TODO(omar): confirm stack
-    image: { src: ocr, alt: { fr: 'Document avec blocs de texte détectés et scores de confiance', en: 'Document with detected text blocks and confidence scores' } },
-  },
-  {
-    id: 'data-platform',
-    title: { fr: 'Plateforme de structuration de données', en: 'AI data-structuring platform' },
-    category: 'ai',
-    year: '2026',
-    status: { fr: 'Projet interne', en: 'Internal project' },
-    problem: {
-      fr: 'Des données brutes — scrapées, exportées, éparpillées — transformées en bases propres que l’IA peut réellement exploiter.',
-      en: 'Raw data — scraped, exported, scattered — turned into clean databases an AI can actually use.',
-    },
-    highlights: {
-      fr: ['Collecte par web scraping.', 'Nettoyage, dédoublonnage et fiabilisation de grands volumes.', 'Structuration assistée par IA vers un schéma clair.'],
-      en: ['Collection through web scraping.', 'Cleaning, de-duplication and validation of large volumes.', 'AI-assisted structuring into a clear schema.'],
-    },
-    stack: ['Web scraping', 'SQL', 'LLM', 'n8n'],
-    image: { src: dataPlatform, alt: { fr: 'Schéma : données brutes à gauche, table structurée à droite', en: 'Diagram: raw data on the left, structured table on the right' } },
-  },
-  {
-    id: 'personal-agent',
-    title: { fr: 'Agent IA personnel', en: 'Personal AI agent' },
-    category: 'ai',
-    year: '2026',
-    status: { fr: 'Pour des particuliers', en: 'For private clients' },
-    problem: {
-      fr: 'Un assistant sur mesure pour des particuliers, branché à leurs outils du quotidien, qui exécute au lieu de seulement répondre.',
-      en: 'A tailor-made assistant for individuals, wired to their everyday tools, that gets things done instead of just answering.',
-    },
-    highlights: {
-      fr: ['Conçu avec et pour chaque client, selon ses usages.', 'Connecté à des services tiers par API.', 'Garde-fous : l’agent demande avant d’agir sur ce qui compte.'],
-      en: ['Designed with and for each client, around their habits.', 'Connected to third-party services through APIs.', 'Guardrails: the agent asks before acting on what matters.'],
-    },
-    stack: ['LLM APIs', 'n8n', 'APIs tierces'],
-    image: { src: personal, alt: { fr: 'Illustration : un agent relié à un agenda, des messages et des tâches', en: 'Illustration: an agent linked to a calendar, messages and tasks' } },
-  },
-  {
     id: 'service-platform',
     title: { fr: 'Service Platform — MVP', en: 'Service Platform — MVP' },
     category: 'web',
     year: '2025',
-    status: { fr: 'Stage — Mobiconnect', en: 'Internship — Mobiconnect' },
+    status: { fr: 'Mobiconnect Technologies', en: 'Mobiconnect Technologies' },
     problem: {
       fr: 'Une marketplace mobile qui met en relation clients et prestataires : demandes, offres, réservations, paiements, avis.',
       en: 'A mobile marketplace connecting customers and service providers: requests, offers, bookings, payments, reviews.',

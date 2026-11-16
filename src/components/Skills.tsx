@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { useLang } from '../i18n/lang'
-import { languages, skills } from '../data/skills'
+import { languages, others, skills } from '../data/skills'
 import { projects } from '../data/projects'
 import { belowFold, useScrollFx } from '../lib/motion'
 import { Constellation, SectionHead } from './SectionHead'
@@ -26,7 +26,7 @@ export function Skills() {
       <div className="gx mb-[10vh]"><Constellation seed={5} /></div>
       <div className="gx">
         <SectionHead n={5} id="skills" label={t.skills.index} title={t.skills.title as [string, string]} intro={t.skills.intro} />
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-12 border-t border-line pt-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-5 gap-y-12 border-t border-line pt-8">
           {skills.map(g => (
             <div key={g.id} data-col>
               <h3 className="serif text-[34px] leading-none mb-5">{pick(g.label)}</h3>
@@ -46,6 +46,7 @@ export function Skills() {
           ))}
         </div>
         <p className="mono text-muted mt-14">
+          {t.skills.others} — {others.join(' · ')}<br />
           {t.skills.languages} — {languages.map(l => pick(l)).join(' · ')}
         </p>
       </div>

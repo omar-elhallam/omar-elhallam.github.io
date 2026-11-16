@@ -7,7 +7,7 @@ export const site = {
   phoneHref: 'tel:+212669809246',
   github: 'https://github.com/omar-elhallam',
   linkedin: 'https://www.linkedin.com/in/omar-abdelmoti-el-hallam-73850a347',
-  cv: '/cv/CV_Omar_El_Hallam_2026.pdf',
+  cv: '/cv/CV_Omar_El_Hallam.pdf',
   // Surf bulletin (hero). Coordinates of the spot whose swell is shown live.
   spot: { label: 'Casablanca', lat: 33.6, lon: -7.68 },
 } as const

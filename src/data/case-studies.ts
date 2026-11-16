@@ -20,10 +20,9 @@ import bonkus480 from '../assets/img/Bonkus-480.webp'
 import bonkus960 from '../assets/img/Bonkus-960.webp'
 import gargus from '../assets/img/gargus-480.webp'
 import bonkusGames from '../assets/img/bonkus-games.webp'
-import agents from '../assets/illustrations/agents.svg'
 import ocr from '../assets/illustrations/ocr.svg'
 import personal from '../assets/illustrations/personal-agent.svg'
-import dataPlatform from '../assets/illustrations/data-platform.svg'
+import syndic from '../assets/illustrations/syndic.svg'
 import crow from '../assets/illustrations/crow.svg'
 import service from '../assets/illustrations/service-platform.svg'
 
@@ -205,11 +204,11 @@ main:
   /* ---------------------------------------------------------------- */
   'service-platform': {
     overview: {
-      fr: 'Pendant mon stage chez Mobiconnect Technologies, j’ai conçu seul, de zéro, une marketplace mobile qui met en relation clients et prestataires de services : demandes, offres, réservations, paiements et avis.',
-      en: 'During my internship at Mobiconnect Technologies, I designed solo, from scratch, a mobile marketplace connecting customers with service providers: requests, offers, bookings, payments and reviews.',
+      fr: 'Chez Mobiconnect Technologies, j’ai conçu seul, de zéro, une marketplace mobile qui met en relation clients et prestataires de services : demandes, offres, réservations, paiements et avis.',
+      en: 'At Mobiconnect Technologies, I designed solo, from scratch, a mobile marketplace connecting customers with service providers: requests, offers, bookings, payments and reviews.',
     },
     role: { fr: 'Full-stack, seul', en: 'Full-stack, solo' },
-    duration: { fr: 'Été 2025 — stage de 3 mois', en: 'Summer 2025 — 3-month internship' },
+    duration: { fr: 'Juin – août 2025', en: 'Jun – Aug 2025' },
     facts: [
       { value: '8', label: { fr: 'modules NestJS', en: 'NestJS modules' } },
       { value: '3', label: { fr: 'rôles utilisateurs', en: 'user roles' } },
@@ -219,7 +218,7 @@ main:
     blocks: [
       {
         type: 'cards', title: { fr: 'Une stack sobre et évolutive', en: 'A lean, scalable stack' },
-        intro: { fr: 'Les contraintes d’un stage — coût, délai, une seule personne — sans fermer la porte à la suite.', en: 'Internship constraints — cost, time, one person — without closing the door on what comes next.' },
+        intro: { fr: 'Des contraintes fortes — coût, délai, une seule personne — sans fermer la porte à la suite.', en: 'Tight constraints — cost, time, one person — without closing the door on what comes next.' },
         items: [
           { title: { fr: 'Mobile — Flutter', en: 'Mobile — Flutter' }, text: { fr: 'Multiplateforme, rendu natif, hot reload ; extensible au web plus tard.', en: 'Cross-platform, native rendering, hot reload; can extend to the web later.' } },
           { title: { fr: 'API — NestJS', en: 'API — NestJS' }, text: { fr: 'TypeScript, structure modulaire, facile à maintenir et à faire grandir.', en: 'TypeScript, modular structure, easy to maintain and grow.' } },
@@ -289,85 +288,162 @@ main:
   },
 
   /* ---------------------------------------------------------------- */
-  agents: {
+  'medical-records': {
     overview: {
-      fr: 'Un LLM seul répond. Un agent agit : il planifie, choisit des outils, exécute du code, se souvient. Ce projet, c’est toute l’infrastructure qui rend ça fiable.',
-      en: 'An LLM alone answers. An agent acts: it plans, picks tools, runs code, remembers. This project is all the infrastructure that makes that reliable.',
+      fr: 'Un médecin exerçant à titre particulier accumule des fiches de consultation manuscrites. L’application les numérise, lit l’identité du patient et les dates avec un modèle de vision, puis classe chaque fiche dans le bon dossier — et ne demande l’avis du médecin que lorsqu’elle doute. Développée seul, de bout en bout, elle tourne en production.',
+      en: 'A doctor in private practice piles up handwritten consultation sheets. The app digitises them, reads the patient’s identity and the dates with a vision model, then files each sheet in the right record — and only asks the doctor when it’s unsure. Built solo, end to end, and running in production.',
     },
-    role: { fr: 'Conception & développement', en: 'Design & development' },
-    duration: { fr: '2026 — Groupe Alliances', en: '2026 — Groupe Alliances' },
-    cover: img(agents, undefined, 800, 560, { fr: 'Planificateur relié à la mémoire, aux outils, au contexte et à la sandbox', en: 'Planner linked to memory, tools, context and sandbox' }, { fr: 'Les briques d’un agent autonome.', en: 'The building blocks of an autonomous agent.' }),
+    role: { fr: 'Développeur unique · mission indépendante', en: 'Sole developer · freelance' },
+    duration: { fr: 'Oct. – nov. 2026 · en production', en: 'Oct – Nov 2026 · in production' },
+    facts: [
+      { value: '7 800', label: { fr: 'lignes de TypeScript', en: 'lines of TypeScript' } },
+      { value: '23', label: { fr: 'endpoints HTTP', en: 'HTTP endpoints' } },
+      { value: '0.9', label: { fr: 'seuil de confiance', en: 'confidence threshold' } },
+      { value: '300', label: { fr: 'PDF d’archives à migrer', en: 'archive PDFs to migrate' } },
+    ],
+    cover: img(ocr, undefined, 800, 560, { fr: 'Fiche avec blocs de texte détectés et scores de confiance', en: 'Sheet with detected text blocks and confidence scores' }, { fr: 'Lire une écriture manuscrite, et savoir quand douter.', en: 'Reading handwriting — and knowing when to doubt.' }),
     blocks: [
       {
-        type: 'cards', title: { fr: 'Les briques', en: 'The building blocks' },
+        type: 'cards', title: { fr: 'Comment ça marche', en: 'How it works' },
         items: [
-          { title: { fr: 'Mémoire', en: 'Memory' }, text: { fr: 'Ce que l’agent a déjà vu et fait, pour reprendre une tâche sans repartir de zéro.', en: 'What the agent already saw and did, so it can resume a task without starting over.' } },
-          { title: { fr: 'Contexte', en: 'Context' }, text: { fr: 'Choisir ce que le modèle voit à chaque étape : assez pour bien décider, pas trop pour ne pas se perdre.', en: 'Choosing what the model sees at each step: enough to decide well, not so much it gets lost.' } },
-          { title: { fr: 'Sandbox', en: 'Sandbox' }, text: { fr: 'Un environnement isolé où l’agent écrit et exécute son propre code, sans risque pour le reste.', en: 'An isolated environment where the agent writes and runs its own code, safely.' } },
-          { title: { fr: 'Outils', en: 'Tools' }, text: { fr: 'Des APIs et des actions branchées, que l’agent choisit lui-même selon la tâche.', en: 'Plugged-in APIs and actions the agent picks by itself depending on the task.' } },
+          { title: { fr: 'Ingestion', en: 'Ingestion' }, text: { fr: 'Dépôt de PDF ou de photos, conversion, découpage en une fiche par page, stockage adressé par empreinte SHA-256 et mise en file d’attente.', en: 'Upload PDFs or photos, convert, split into one sheet per page, SHA-256 content-addressed storage, then queue.' }, tags: ['SHA-256', 'queue'] },
+          { title: { fr: 'Vision', en: 'Vision' }, text: { fr: 'Deux images par fiche : l’en-tête recadré en haute résolution pour l’identité, la page entière pour les dates. Sortie JSON validée par schéma Zod.', en: 'Two images per sheet: a high-resolution crop of the header for identity, the full page for dates. JSON output validated by a Zod schema.' }, tags: ['Claude Sonnet', 'Zod'] },
+          { title: { fr: 'Appariement patient', en: 'Patient matching' }, text: { fr: 'Arbitrage par date de naissance et distance de Levenshtein : deux homonymes nés à des dates différentes ne sont jamais fusionnés automatiquement.', en: 'Decided by date of birth and Levenshtein distance: two namesakes born on different dates are never merged automatically.' }, tags: ['Levenshtein'] },
+          { title: { fr: 'Vérification humaine', en: 'Human review' }, text: { fr: 'Sous un seuil de confiance de 0,9, la fiche part dans une file où le médecin corrige l’identité et les dates.', en: 'Below a 0.9 confidence threshold, the sheet goes to a queue where the doctor corrects identity and dates.' }, tags: ['0.9'] },
         ],
       },
-      { type: 'text', title: { fr: 'Pas de capture publique', en: 'No public screenshots' }, body: { fr: 'Projet interne : le code et les écrans restent confidentiels. Je peux en parler plus en détail en entretien.', en: 'Internal project: code and screens stay confidential. Happy to go into detail in an interview.' } },
-    ],
-  },
-
-  ocr: {
-    overview: {
-      fr: 'Les documents réels ne ressemblent jamais aux exemples : scans de travers, tampons, colonnes, écriture. L’objectif : en tirer un texte fiable et des données structurées.',
-      en: 'Real documents never look like the examples: skewed scans, stamps, columns, handwriting. The goal: get reliable text and structured data out of them.',
-    },
-    role: { fr: 'Conception & développement', en: 'Design & development' },
-    duration: { fr: '2026', en: '2026' },
-    cover: img(ocr, undefined, 800, 560, { fr: 'Document avec blocs de texte détectés', en: 'Document with detected text blocks' }, { fr: 'Détection des blocs et score de confiance.', en: 'Block detection and confidence score.' }),
-    blocks: [
       {
-        type: 'cards', title: { fr: 'L’approche', en: 'The approach' },
+        type: 'list', title: { fr: 'Pour le médecin', en: 'For the doctor' },
+        items: {
+          fr: ['Interface web mobile-first : recherche, tris multiples, historique chronologique dédoublonné.', 'Visionneuse page entière et thème clair / sombre.', 'Outils CLI dédiés : import en masse, mesure de précision du modèle, diagnostic de sauvegarde.'],
+          en: ['Mobile-first web app: search, multiple sorts, de-duplicated chronological history.', 'Full-page viewer and light / dark theme.', 'Dedicated CLI tools: bulk import, model accuracy measurement, backup diagnostics.'],
+        },
+      },
+      {
+        type: 'cards', title: { fr: 'Exploitation & sécurité', en: 'Operations & security' },
         items: [
-          { title: { fr: 'Lire dans le bon ordre', en: 'Read in the right order' }, text: { fr: 'Détecter les blocs de texte et reconstruire l’ordre de lecture.', en: 'Detect text blocks and rebuild the reading order.' } },
-          { title: { fr: 'Savoir quand douter', en: 'Know when to doubt' }, text: { fr: 'Un score de confiance par bloc pour signaler ce qu’un humain doit relire.', en: 'A confidence score per block to flag what a human should check.' } },
-          { title: { fr: 'Sortir des données', en: 'Output data' }, text: { fr: 'Un résultat structuré, directement exploitable par une IA ou une base.', en: 'Structured output, directly usable by an AI or a database.' } },
+          { title: { fr: 'Authentification', en: 'Authentication' }, text: { fr: 'bcrypt avec hachage leurre contre les attaques temporelles, double limitation de débit (par IP et globale).', en: 'bcrypt with a decoy hash against timing attacks, double rate limiting (per IP and global).' } },
+          { title: { fr: 'Sauvegardes', en: 'Backups' }, text: { fr: 'Instantané SQLite cohérent par VACUUM INTO chaque nuit, envoi chiffré restic vers Backblaze B2, rétention 14 jours / 8 semaines / 24 mois.', en: 'Consistent nightly SQLite snapshot via VACUUM INTO, encrypted restic upload to Backblaze B2, retention 14 days / 8 weeks / 24 months.' } },
+          { title: { fr: 'Restauration testée', en: 'Tested restores' }, text: { fr: 'Restauration vérifiée de bout en bout : intégrité de la base et recalcul des empreintes des fichiers restaurés.', en: 'Restores verified end to end: database integrity and re-hashing of every restored file.' } },
+          { title: { fr: 'Déploiement', en: 'Deployment' }, text: { fr: 'Docker multi-étapes sur Fly.io, Node 22, SQLite en module natif.', en: 'Multi-stage Docker on Fly.io, Node 22, native SQLite module.' } },
         ],
       },
-    ],
-  },
-
-  'personal-agent': {
-    overview: {
-      fr: 'En dehors du travail, je conçois des agents IA personnels pour des particuliers : des assistants branchés à leurs outils, qui agissent à leur place sur les tâches répétitives.',
-      en: 'Outside work, I build personal AI agents for individuals: assistants wired to their tools that act on their behalf on repetitive tasks.',
-    },
-    role: { fr: 'Freelance', en: 'Freelance' },
-    duration: { fr: '2026', en: '2026' },
-    cover: img(personal, undefined, 800, 600, { fr: 'Un agent relié à un agenda, des messages et des tâches', en: 'An agent linked to a calendar, messages and tasks' }, { fr: 'Un agent au centre des outils du quotidien.', en: 'An agent at the centre of everyday tools.' }),
-    blocks: [
       {
-        type: 'cards', title: { fr: 'Principes', en: 'Principles' },
+        type: 'challenges', title: { fr: 'Difficultés résolues', en: 'Problems solved' },
         items: [
-          { title: { fr: 'Sur mesure', en: 'Tailor-made' }, text: { fr: 'Chaque agent part des habitudes réelles de la personne, pas d’un modèle générique.', en: 'Each agent starts from the person’s real habits, not a generic template.' } },
-          { title: { fr: 'Connecté', en: 'Connected' }, text: { fr: 'Branché à des services tiers par API et orchestré avec n8n.', en: 'Wired to third-party services through APIs and orchestrated with n8n.' } },
-          { title: { fr: 'Garde-fous', en: 'Guardrails' }, text: { fr: 'L’agent demande confirmation avant toute action qui compte.', en: 'The agent asks for confirmation before any action that matters.' } },
+          { title: { fr: 'Doublons fantômes', en: 'Ghost duplicates' }, problem: { fr: 'Chaque redépôt du même PDF créait des doublons : la librairie injectait des horodatages dans les pages découpées.', en: 'Re-uploading the same PDF created duplicates: the library stamped timestamps into the split pages.' }, solution: { fr: 'Découpage PDF déterministe sans ré-encodage, horodatages neutralisés : même entrée, même empreinte.', en: 'Deterministic PDF splitting without re-encoding, timestamps neutralised: same input, same hash.' } },
+          { title: { fr: 'Plusieurs consultations par feuille', en: 'Several visits per sheet' }, problem: { fr: 'Certaines feuilles portent plusieurs consultations, le modèle n’en voyait qu’une.', en: 'Some sheets carry several visits, the model only saw one.' }, solution: { fr: 'Seconde image dédiée et passage à une relation 1→N, avec reprise des données existantes.', en: 'A dedicated second image and a move to a 1→N relation, migrating existing data.' } },
+          { title: { fr: 'Sauvegardes silencieuses', en: 'Silent backups' }, problem: { fr: 'Les sauvegardes échouaient sans aucune erreur visible.', en: 'Backups were failing without any visible error.' }, solution: { fr: 'Diagnostic : magasin de certificats absent de l’image Docker, combiné à un backend qui avalait ses erreurs. Corrigé et surveillé.', en: 'Root cause: no certificate store in the Docker image, plus a backend swallowing its errors. Fixed and monitored.' } },
         ],
+      },
+      {
+        type: 'code', title: { fr: 'Stack', en: 'Stack' },
+        code: `TypeScript · React 19 · Vite 6 · Hono 4 · Node 22
+SQLite (native module) · Anthropic API (Claude Sonnet, structured output via Zod)
+Fly.io · multi-stage Docker · restic → Backblaze B2 (S3)
+
+~7,800 lines of TypeScript · 37 files · 23 HTTP endpoints · 1,131 lines of docs`,
       },
     ],
   },
 
-  'data-platform': {
+  'consultant-assistant': {
     overview: {
-      fr: 'L’IA ne vaut que ce que valent ses données. Cette plateforme transforme des données brutes — scrapées, exportées, éparpillées — en bases propres et fiables.',
-      en: 'AI is only as good as its data. This platform turns raw data — scraped, exported, scattered — into clean, reliable databases.',
+      fr: 'Un assistant IA personnel, utilisé tous les jours par un consultant senior sur un programme de coopération internationale. Il vit dans Telegram, comprend la voix, lit les e-mails, prépare des brouillons, génère des documents à partir de ses modèles et met à jour sa feuille de temps — avec la sécurité pensée dès la conception.',
+      en: 'A personal AI assistant used every day by a senior consultant on an international cooperation programme. It lives in Telegram, understands voice, reads email, prepares drafts, generates documents from his templates and updates his timesheet — with security designed in from the start.',
     },
-    role: { fr: 'Conception & développement', en: 'Design & development' },
-    duration: { fr: '2026 — Groupe Alliances', en: '2026 — Groupe Alliances' },
-    cover: img(dataPlatform, undefined, 800, 600, { fr: 'Données brutes à gauche, table structurée à droite', en: 'Raw data on the left, structured table on the right' }, { fr: 'Du nuage de points à la table.', en: 'From a cloud of points to a table.' }),
+    role: { fr: 'Conception & développement, seul', en: 'Design & development, solo' },
+    duration: { fr: 'Mai – juil. 2026 · en production sur VPS', en: 'May – Jul 2026 · in production on a VPS' },
+    facts: [
+      { value: '754', label: { fr: 'tests automatisés', en: 'automated tests' } },
+      { value: '30', label: { fr: 'outils côté client', en: 'client-side tools' } },
+      { value: '80k', label: { fr: 'tokens avant compaction', en: 'tokens before compaction' } },
+      { value: '12 %', label: { fr: 'de dépense invisible retrouvée', en: 'hidden spend uncovered' } },
+    ],
+    cover: img(personal, undefined, 800, 600, { fr: 'Un agent relié aux e-mails, à l’agenda et aux documents', en: 'An agent linked to mail, calendar and documents' }, { fr: 'Un agent au centre des outils du quotidien.', en: 'An agent at the centre of everyday tools.' }),
     blocks: [
       {
-        type: 'timeline', title: { fr: 'Le pipeline', en: 'The pipeline' },
+        type: 'cards', title: { fr: 'Ce qu’il sait faire', en: 'What it does' },
         items: [
-          { label: { fr: '01', en: '01' }, title: { fr: 'Collecte', en: 'Collect' }, text: { fr: 'Web scraping et import de sources existantes.', en: 'Web scraping and import of existing sources.' } },
-          { label: { fr: '02', en: '02' }, title: { fr: 'Nettoyage', en: 'Clean' }, text: { fr: 'Doublons, formats, valeurs manquantes : fiabiliser de grands volumes.', en: 'Duplicates, formats, missing values: make large volumes reliable.' } },
-          { label: { fr: '03', en: '03' }, title: { fr: 'Structuration', en: 'Structure' }, text: { fr: 'L’IA aide à ranger le texte libre dans un schéma clair.', en: 'AI helps map free text into a clear schema.' } },
-          { label: { fr: '04', en: '04' }, title: { fr: 'Exploitation', en: 'Use' }, text: { fr: 'Des données SQL prêtes pour la recherche, les tableaux de bord et les agents.', en: 'SQL data ready for search, dashboards and agents.' } },
+          { title: { fr: 'Agent multimodal', en: 'Multimodal agent' }, text: { fr: 'Texte, note vocale, document et image sur Telegram, avec une boucle d’outils agentique plafonnée à 25 itérations.', en: 'Text, voice notes, documents and images on Telegram, with an agentic tool loop capped at 25 iterations.' }, tags: ['Claude Sonnet', 'Haiku'] },
+          { title: { fr: 'Gmail, sans envoi', en: 'Gmail, no sending' }, text: { fr: '11 outils en lecture et brouillons uniquement. Aucun outil d’envoi n’existe par construction ; chaque mise à jour de brouillon est vérifiée par relecture.', en: '11 read-and-draft-only tools. No send tool exists by design; every draft update is verified by reading it back.' }, tags: ['OAuth 2.0'] },
+          { title: { fr: 'Documents', en: 'Documents' }, text: { fr: 'docx, xlsx avec formules, pdf, pptx. Le bot classe les modèles reçus et produit les livrables par copie du modèle.', en: 'docx, xlsx with formulas, pdf, pptx. The bot files the templates it receives and builds deliverables by copying them.' } },
+          { title: { fr: 'Voix', en: 'Voice' }, text: { fr: 'Transcription Whisper en français, synthèse vocale en réponse ; c’est le modèle qui décide de répondre à l’oral.', en: 'Whisper transcription in French, spoken replies via TTS; the model itself decides when to answer by voice.' }, tags: ['Whisper', 'TTS', 'ffmpeg'] },
         ],
+      },
+      {
+        type: 'list', title: { fr: 'Contexte & proactivité', en: 'Context & proactivity' },
+        items: {
+          fr: ['Sessions persistantes avec rotation à l’inactivité et rappel des conversations passées.', 'Compaction par résumé d’un modèle plus léger au-delà de 80 000 tokens, avec découpe sûre des paires appel d’outil / résultat.', 'Tâche planifiée : feuille de temps mise à jour chaque jour à partir des e-mails envoyés, déposée en brouillon — une fois par jour, week-ends exclus, rattrapage au redémarrage.'],
+          en: ['Persistent sessions with inactivity rotation and recall of past conversations.', 'Summary-based compaction by a lighter model past 80,000 tokens, safely splitting tool call / result pairs.', 'Scheduled task: the timesheet is updated daily from sent emails and left as a draft — once a day, weekends excluded, caught up on restart.'],
+        },
+      },
+      {
+        type: 'challenges', title: { fr: 'Sécurité & fiabilité', en: 'Security & reliability' },
+        items: [
+          { title: { fr: 'Exfiltration par injection', en: 'Injection exfiltration' }, problem: { fr: 'Un e-mail entrant contenant un marqueur de pièce jointe pointant vers le jeton OAuth Gmail aurait pu le faire livrer sur Telegram.', en: 'An incoming email carrying an attachment marker that pointed to the Gmail OAuth token could have had it delivered on Telegram.' }, solution: { fr: 'Liste blanche des sources autorisées à émettre ces marqueurs, liste noire sur toutes les surfaces de sortie, processus confiné par systemd (ProtectSystem=strict, NoNewPrivileges).', en: 'Allow-list of sources allowed to emit those markers, deny-list on every output surface, process sandboxed by systemd (ProtectSystem=strict, NoNewPrivileges).' } },
+          { title: { fr: 'Historique corrompu', en: 'Corrupted history' }, problem: { fr: 'La troncature d’un appel d’outil pouvait laisser un historique incohérent.', en: 'Truncating a tool call could leave an inconsistent history.' }, solution: { fr: 'Détection, reprise et annulation atomique du tour.', en: 'Detection, recovery and atomic rollback of the turn.' } },
+          { title: { fr: 'Coûts invisibles', en: 'Invisible costs' }, problem: { fr: 'Les tours échoués étaient facturés sans que personne ne le voie.', en: 'Failed turns were billed without anyone noticing.' }, solution: { fr: 'Registre de coûts par requête et alertes à l’opérateur : environ 12 % de dépense jusque-là invisible.', en: 'Per-request cost ledger and operator alerts: about 12% of previously invisible spend.' } },
+        ],
+      },
+      {
+        type: 'code', title: { fr: 'Stack & volumétrie', en: 'Stack & size' },
+        code: `Python 3.12 · python-telegram-bot (async) · Anthropic API (Claude Sonnet & Haiku)
+OpenAI Whisper & TTS · Gmail API (OAuth 2.0) · SQLite (WAL)
+Hetzner Cloud · Ubuntu · systemd (sandboxed) · pytest
+
+~12,750 lines of Python · ~12,050 lines of tests · 754 tests in 26 files`,
+      },
+    ],
+  },
+
+  syndic: {
+    overview: {
+      fr: 'Une plateforme complète pour gérer une résidence en copropriété : un back-office pour le gestionnaire et le comptable, un portail pour chaque copropriétaire. Menée seul, sans cahier des charges, avec un périmètre défini en continu avec le client.',
+      en: 'A complete platform to run a condominium: a back office for the manager and the accountant, a portal for every owner. Built solo, without a spec, with the scope defined continuously with the client.',
+    },
+    role: { fr: 'Développeur unique', en: 'Sole developer' },
+    duration: { fr: 'Juin 2026', en: 'June 2026' },
+    facts: [
+      { value: '13 600', label: { fr: 'lignes de TypeScript', en: 'lines of TypeScript' } },
+      { value: '34', label: { fr: 'pages', en: 'pages' } },
+      { value: '55', label: { fr: 'Server Actions', en: 'Server Actions' } },
+      { value: '26', label: { fr: 'modèles de données', en: 'data models' } },
+    ],
+    cover: img(syndic, undefined, 800, 600, { fr: 'Une résidence reliée au portail gestionnaire et au portail copropriétaire', en: 'A residence linked to the manager portal and the owner portal' }, { fr: 'Deux portails, une seule source de vérité.', en: 'Two portals, one source of truth.' }),
+    blocks: [
+      {
+        type: 'cards', title: { fr: 'Le métier', en: 'The business' },
+        items: [
+          { title: { fr: 'Appels de charges', en: 'Service-charge calls' }, text: { fr: 'Trimestriels, répartis en tantièmes, générés de façon idempotente (upsert transactionnel), montants en centimes entiers : aucune dérive d’arrondi.', en: 'Quarterly, split by ownership shares, generated idempotently (transactional upsert), amounts in integer cents: no rounding drift.' }, tags: ['tantièmes', 'idempotent'] },
+          { title: { fr: 'Paiements', en: 'Payments' }, text: { fr: 'Virement, chèque, espèces ou paiement en ligne ; statut des appels et soldes recalculés en transaction.', en: 'Transfer, cheque, cash or online payment; call statuses and balances recalculated in a transaction.' } },
+          { title: { fr: 'Documents', en: 'Documents' }, text: { fr: 'PDF générés côté serveur — relances à trois niveaux, convocations d’assemblée — classés automatiquement dans la GED.', en: 'Server-side PDFs — three-level reminders, meeting notices — filed automatically in the document store.' }, tags: ['pdf-lib'] },
+          { title: { fr: 'Modules', en: 'Modules' }, text: { fr: 'GED, SAV bi-portail, budget contre réalisé, trésorerie, fournisseurs, annonces, sondages et assemblées générales.', en: 'Document store, two-portal support desk, budget vs actuals, treasury, suppliers, announcements, polls and general meetings.' } },
+        ],
+      },
+      {
+        type: 'list', title: { fr: 'Pensée pour évoluer', en: 'Built to evolve' },
+        items: {
+          fr: ['Plateforme modulable : listes de valeurs et champs personnalisés (modèle EAV) configurables par le client sur cinq entités.', 'Architecture découplée : paiement, e-mail et stockage derrière des interfaces, avec des implémentations de démonstration remplaçables par les vrais services sans toucher au reste.'],
+          en: ['Configurable platform: value lists and custom fields (EAV model) the client sets up on five entities.', 'Decoupled architecture: payment, email and storage behind interfaces, with demo implementations swappable for real services without touching the rest.'],
+        },
+      },
+      {
+        type: 'cards', title: { fr: 'Audit & durcissement de sécurité', en: 'Security audit & hardening' },
+        items: [
+          { title: { fr: 'Sessions', en: 'Sessions' }, text: { fr: 'JWT httpOnly, secret de session en fail-closed en production.', en: 'httpOnly JWT, session secret fail-closed in production.' } },
+          { title: { fr: 'Accès', en: 'Access' }, text: { fr: 'Rôles revérifiés en base à chaque requête, garde multi-tenant sur le périmètre de la résidence.', en: 'Roles re-checked in the database on every request, multi-tenant guard on the residence scope.' } },
+          { title: { fr: 'Défenses', en: 'Defences' }, text: { fr: 'Anti-brute-force, en-têtes de sécurité et CSP, liste blanche MIME et téléchargements par route authentifiée.', en: 'Anti-brute-force, security headers and CSP, MIME allow-list and downloads through an authenticated route.' } },
+        ],
+      },
+      {
+        type: 'code', title: { fr: 'Stack & volumétrie', en: 'Stack & size' },
+        code: `Next.js 16 (App Router, Server Actions) · React 19 · TypeScript · Tailwind CSS 4
+Prisma 6 · PostgreSQL 16 · Zod · jose (JWT) · bcryptjs · pdf-lib
+Docker Compose · Railway
+
+~13,600 lines of TypeScript · 110 files · 34 pages · 55 Server Actions
+26 data models · 15 enums · 12 migrations`,
       },
     ],
   },

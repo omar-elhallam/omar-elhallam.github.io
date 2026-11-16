@@ -151,13 +151,17 @@ export default function CaseStudy({ id, onClose, onNavigate }: { id: string; onC
 
 /** "25+" counts 0 → 25 then shows the suffix; ease-out-expo over 1.4 s. */
 function countUp(el: HTMLElement) {
+  // handles '25+', '7 800', '0.9', '12 %', '80k': number part animates, the rest is kept as-is
   const raw = el.dataset.count ?? ''
-  const m = raw.match(/^(\d+)(.*)$/)
+  const m = raw.match(/^(\d[\d\s.]*)(.*)$/)
   if (!m) return
-  const end = +m[1], suffix = m[2], t0 = performance.now(), D = 1400
+  const numStr = m[1].trimEnd(), suffix = raw.slice(numStr.length)
+  const end = parseFloat(numStr.replace(/\s/g, '')), dec = (numStr.split('.')[1] ?? '').length, grouped = /\s/.test(numStr)
+  const fmt = (n: number) => dec ? n.toFixed(dec) : grouped ? String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') : String(Math.round(n))
+  const t0 = performance.now(), D = 1400
   const step = (now: number) => {
     const k = Math.min(1, (now - t0) / D), e = k === 1 ? 1 : 1 - Math.pow(2, -10 * k)
-    el.textContent = `${Math.round(end * e)}${k === 1 ? suffix : ''}`
+    el.textContent = k === 1 ? raw : fmt(end * e) + suffix
     if (k < 1) requestAnimationFrame(step)
   }
   requestAnimationFrame(step)

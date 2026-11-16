@@ -31,12 +31,12 @@ const fr = {
     title: ['Lire le terrain,', 'attendre la bonne série.'],
     body: [
       'Je m’appelle Omar. J’ai appris l’informatique à Richmond, en Virginie, en construisant un processeur porte logique par porte logique. Depuis, j’aime comprendre les choses jusqu’au fond.',
-      'Aujourd’hui, chez Groupe Alliances à Casablanca, je conçois des agents IA, des assistants internes et des automatisations qui font gagner des heures à de vraies équipes — avec des interfaces aussi soignées que ce qu’il y a derrière.',
+      'Aujourd’hui, je travaille à la DSI du Groupe Alliances à Casablanca — agents IA, assistants internes, automatisations — et je mène en parallèle des missions indépendantes. Mes projets tournent en production chez de vrais utilisateurs, avec ce que cela implique : sécurité, sauvegardes vérifiées, suivi des coûts, reprise sur incident.',
       'Le reste du temps, je suis à l’eau — ou une guitare électrique entre les mains. Le surf m’a appris la même chose que le code : observer longtemps, choisir sa vague, puis s’engager à fond.',
     ],
     facts: [
       { k: 'Base', v: 'Casablanca' },
-      { k: 'Langues', v: 'FR · EN · AR' },
+      { k: 'Langues', v: 'FR · EN · AR · darija' },
       { k: 'Passions', v: 'Surf · guitare électrique & piano · jeux vidéo' },
     ],
   },
@@ -96,6 +96,7 @@ const fr = {
     title: ['La ', 'boîte à outils'],
     intro: 'Pas de jauges en pourcentage — juste ce que j’utilise vraiment.',
     languages: 'Langues',
+    others: 'Autres',
     usedIn: (n: number) => `utilisé dans ${n} projet${n > 1 ? 's' : ''}`,
   },
   contact: {
@@ -159,12 +160,12 @@ const en: Strings = {
     title: ['Read the line-up,', 'wait for the right set.'],
     body: [
       'I’m Omar. I learned computer science in Richmond, Virginia, by building a CPU one logic gate at a time. Ever since, I like understanding things all the way down.',
-      'Today, at Groupe Alliances in Casablanca, I design AI agents, internal assistants and automations that save real teams real hours — with interfaces as carefully made as what runs behind them.',
+      'Today I work in the IT department of Groupe Alliances in Casablanca — AI agents, internal assistants, automations — and I take on freelance missions alongside. My projects run in production for real users, with everything that implies: security, verified backups, cost tracking, incident recovery.',
       'The rest of the time, I’m in the water — or holding an electric guitar. Surfing taught me what code did: watch for a long time, pick your wave, then fully commit.',
     ],
     facts: [
       { k: 'Based in', v: 'Casablanca' },
-      { k: 'Languages', v: 'FR · EN · AR' },
+      { k: 'Languages', v: 'FR · EN · AR · Darija' },
       { k: 'Into', v: 'Surf · electric guitar & piano · video games' },
     ],
   },
@@ -224,6 +225,7 @@ const en: Strings = {
     title: ['The ', 'toolbox'],
     intro: 'No percentage bars — just what I actually use.',
     languages: 'Languages',
+    others: 'Also',
     usedIn: (n: number) => `used in ${n} project${n > 1 ? 's' : ''}`,
   },
   contact: {

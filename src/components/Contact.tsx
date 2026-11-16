@@ -69,7 +69,7 @@ export function Contact({ onCopied }: { onCopied: () => void }) {
     { k: 'GitHub', v: 'github.com/omar-elhallam', href: site.github, ext: true },
     { k: 'LinkedIn', v: 'in/omar-abdelmoti-el-hallam', href: site.linkedin, ext: true },
     { k: t.contact.phone, v: site.phone, href: site.phoneHref },
-    { k: t.contact.cv, v: 'CV_Omar_El_Hallam_2026.pdf', href: site.cv, dl: true },
+    { k: t.contact.cv, v: 'CV_Omar_El_Hallam.pdf', href: site.cv, dl: true },
   ]
 
   return (
